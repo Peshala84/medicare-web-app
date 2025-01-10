@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
 import CustomFormField from "../CustomFormField"
 import { UserFormValidation} from "@/lib/validation"
@@ -15,6 +14,9 @@ export enum FormFieldType {
     DATE_PICKER = 'datePicker',
     SELECT = 'select',
     SKELETON = 'skeleton',
+    INPUT = "INPUT",
+    PHONE_INPUT = "PHONE_INPUT",
+    CHECKBOX = "CHECKBOX",
 }
 
 const PatientForm = () => {
@@ -22,7 +24,6 @@ const PatientForm = () => {
  const router = useRouter();
 
      const [isLoading, setIsLoading] = useState(false);
-    // 1. Define your form.
     const form = useForm<z.infer<typeof UserFormValidation>>({
         resolver: zodResolver(UserFormValidation),
         defaultValues: {
